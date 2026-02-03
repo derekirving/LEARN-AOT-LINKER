@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ILLinkTreatWarningsAsErrors>true</ILLinkTreatWarningsAsErrors>
+		<PublishTrimmed>true</PublishTrimmed>
+		<PublishAot>true</PublishAot>
+		<PublishDir Condition="'$(PublishDir)' == ''">..\Artifacts\WebApp\Deploy</PublishDir>
+		<SymbolsDir>.\..\Artifacts\WebApp\Symbols\</SymbolsDir>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<InvariantGlobalization>true</InvariantGlobalization>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application\Application.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.Development.json;NuGet.config;libman.json;client"
+            CopyToPublishDirectory="Never" />
+	</ItemGroup>
+
+	<!-- This runs after the Publish target completes -->
+	<Target Name="CopyPDBsAfterPublish" AfterTargets="Publish">
+		<ItemGroup>
+			<!-- Collect all PDB files from the publish output -->
+			<PDBFiles Include="$(PublishDir)**\*.pdb" />
+		</ItemGroup>
+		<Message Text="Copying $([System.String]::Join(';', @(@(PDBFiles)))) to $(SymbolsDir)" Importance="high" />
+		<Copy SourceFiles="@(PDBFiles)" DestinationFolder="$(SymbolsDir)" />
+		<Delete Files="@(PDBFiles)" Condition="'$(KeepPDBsInPublish)' != 'true'" />
+	</Target>
+
+</Project>

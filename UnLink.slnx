@@ -1,0 +1,18 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Libs/">
+    <Project Path="Simplify/Simplify.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="WebApp/WebApp.csproj" />
+  </Folder>
+  <Folder Name="/SolutionItems/">
+    <File Path="Dockerfile" />
+    <File Path="ReadMe.md" />
+  </Folder>
+  <Project Path="Application/Application.csproj" />
+</Solution>
