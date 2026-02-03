@@ -23,6 +23,14 @@
             CopyToPublishDirectory="Never" />
 	</ItemGroup>
 
+	<Target Name="EnsureBunInstall" BeforeTargets="Build">
+		<PropertyGroup>
+			<NodeModulesPath>$(MSBuildProjectDirectory)\client\node_modules</NodeModulesPath>
+		</PropertyGroup>
+		<Exec Command="bun i" WorkingDirectory="$(MSBuildProjectDirectory)\client"
+			  Condition="!Exists('$(NodeModulesPath)')" />
+	</Target>
+
 	<!-- This runs after the Publish target completes -->
 	<Target Name="CopyPDBsAfterPublish" AfterTargets="Publish">
 		<ItemGroup>

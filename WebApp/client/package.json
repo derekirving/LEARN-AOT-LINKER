@@ -1,0 +1,30 @@
+{
+  "name": "client",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "rimraf ../wwwroot/client",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/bun": "latest",
+    "@types/node": "^24.10.1",
+    "rimraf": "^6.1.2",
+    "sass": "^1.97.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4",
+    "vite-plugin-purgecss-updated-v5": "^1.2.6"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "vite-plugin-purgecss": "^0.2.13"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

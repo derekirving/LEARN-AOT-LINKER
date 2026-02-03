@@ -10,7 +10,7 @@
   <Folder Name="/Presentation/">
     <Project Path="WebApp/WebApp.csproj" />
   </Folder>
-  <Folder Name="/SolutionItems/">
+  <Folder Name="/_SolutionItems/">
     <File Path="Dockerfile" />
     <File Path="ReadMe.md" />
   </Folder>
