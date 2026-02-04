@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Update="appsettings.Development.json;NuGet.config;libman.json;client"
+		<Content Update="appsettings.Development.json;NuGet.config;libman.json;client/**"
             CopyToPublishDirectory="Never" />
 	</ItemGroup>
 
@@ -31,6 +31,11 @@
 			  Condition="!Exists('$(NodeModulesPath)')" />
 	</Target>
 
+	<Target Name="BunBuildBeforePublish" BeforeTargets="Build" Condition="'$(Configuration)' == 'Release'">
+		<Exec Command="bun run build" WorkingDirectory="$(MSBuildProjectDirectory)\client" />
+	</Target>
+
+	
 	<!-- This runs after the Publish target completes -->
 	<Target Name="CopyPDBsAfterPublish" AfterTargets="Publish">
 		<ItemGroup>

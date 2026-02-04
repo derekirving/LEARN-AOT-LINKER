@@ -1,6 +1,8 @@
 var builder = WebApplication.CreateSlimBuilder(args);
 var app = builder.Build();
 
+// https://khalidabuhakmeh.com/running-vite-with-aspnet-core-web-applications
+
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/html-lib", () =>
